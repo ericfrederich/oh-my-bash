@@ -1,3 +1,18 @@
+# Eric's Fork of oh-my-bash
+
+### Changes
+* My theme based on `zork` added and made default.
+* Installation doesn't replace ~/.bashrc; it writes a new file and sources it
+
+## Installation
+
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/ericfrederich/oh-my-bash/master/tools/install.sh)"
+```
+
+<!-- Comment out rather than modify to make merging w/ upstream easier -->
+
+<!--
 Oh My Bash is an open source, community-driven framework for managing your [bash](https://www.gnu.org/software/bash/) configuration.
 
 Sounds boring. Let's try again.
@@ -294,3 +309,4 @@ Thank you so much!
 
 Oh My Bash is derived from [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh).
 Oh My Bash is released under the [MIT license](LICENSE.md).
+-->

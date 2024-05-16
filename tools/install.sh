@@ -153,14 +153,16 @@ function _omb_install_user_bashrc {
     # shellcheck disable=SC2155
     local bashrc_backup=~/.bashrc.omb-backup-$(date +%Y%m%d%H%M%S)
     printf '%s\n' "${YELLOW}Found ~/.bashrc.${NORMAL} ${GREEN}Backing up to $bashrc_backup${NORMAL}"
-    _omb_install_run mv ~/.bashrc "$bashrc_backup"
+    _omb_install_run cp ~/.bashrc "$bashrc_backup"
   fi
 
-  printf '%s\n' "${BLUE}Copying the Oh-My-Bash template file to ~/.bashrc${NORMAL}"
+  printf '%s\n' "${BLUE}Copying the Oh-My-Bash template file to ~/.omb.bashrc${NORMAL}"
   sed "/^export OSH=/ c\\
 export OSH='${OSH//\'/\'\\\'\'}'
   " "$OSH"/templates/bashrc.osh-template >| ~/.bashrc.omb-temp &&
-    _omb_install_run mv -f ~/.bashrc.omb-temp ~/.bashrc
+    _omb_install_run mv -f ~/.bashrc.omb-temp ~/.omb.bashrc
+  
+  _omb_install_run cat "$OSH"/templates/bashrc.append-template >> ~/.bashrc
 
   # If "source ~/.bashrc" is not found in ~/.bash_profile or ~/.profile, we try
   # to create a new ~/.bash_profile with the default content or show messages
@@ -269,7 +271,7 @@ function _omb_install_main {
   fi
 
   if [[ ! $OSH_REPOSITORY ]]; then
-    OSH_REPOSITORY=https://github.com/ohmybash/oh-my-bash.git
+    OSH_REPOSITORY=https://github.com/ericfrederich/oh-my-bash.git
   fi
 
   # Only enable exit-on-error after the non-critical colorization stuff,

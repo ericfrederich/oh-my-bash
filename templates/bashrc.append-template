@@ -1,0 +1,5 @@
+
+# added by oh-my-bash installation
+for OTHER in $(ls ~/.*.bashrc 2> /dev/null); do
+    source $OTHER
+done
