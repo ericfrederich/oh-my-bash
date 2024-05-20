@@ -1,5 +1,7 @@
 #! bash oh-my-bash.module
 
+# Based on zork
+
 export PROMPT_DIRTRIM=4
 
 SCM_THEME_PROMPT_PREFIX=""
@@ -44,7 +46,8 @@ function modern_scm_prompt {
   if [[ $CHAR == "$SCM_NONE_CHAR" ]]; then
     return
   else
-    echo "[$(scm_prompt_info)]"
+    echo "
+├─[$(scm_prompt_info)]"
   fi
 }
 
@@ -74,7 +77,8 @@ function _omb_theme_PROMPT_COMMAND {
     if [[ ${RC} == 0 ]]; then
         ret_status="${_omb_prompt_bold_green}▪${_omb_prompt_normal}"
     else
-        ret_status="${_omb_prompt_bold_brown}${RC}💩${_omb_prompt_normal}"
+        ret_status="${_omb_prompt_bold_brown}${RC}💔${_omb_prompt_normal}"
+        # ret_status="${_omb_prompt_bold_brown}${RC}💩💔${_omb_prompt_normal}"
     fi
 
 
@@ -87,15 +91,15 @@ function _omb_theme_PROMPT_COMMAND {
 
   # nice prompt
   case $(id -u) in
-  0) PS1="${TITLEBAR}┌─$(my_ve)$(chroot)[$my_ps_root][$my_ps_host_root]$(modern_scm_prompt)$(__my_rvm_ruby_version)[${_omb_prompt_teal}\w${_omb_prompt_normal}]$(is_vim_shell)
-└─▪ "
+  0) PS1="${TITLEBAR}╭─$(my_ve)$(chroot)[$my_ps_root][$my_ps_host_root]$(__my_rvm_ruby_version)[${_omb_prompt_teal}\w${_omb_prompt_normal}]$(modern_scm_prompt)$(is_vim_shell)
+╰─▪ "
      ;;
-  *) PS1="${TITLEBAR}┌─$(my_ve)$(chroot)[$my_ps_user][$my_ps_host]$(modern_scm_prompt)$(__my_rvm_ruby_version)[${_omb_prompt_teal}\w${_omb_prompt_normal}]$(is_vim_shell)
-└─${ret_status} "
+  *) PS1="${TITLEBAR}╭─$(my_ve)$(chroot)[$my_ps_user][$my_ps_host]$(__my_rvm_ruby_version)[${_omb_prompt_teal}\w${_omb_prompt_normal}]$(modern_scm_prompt)$(is_vim_shell)
+╰─${ret_status} "
      ;;
   esac
 }
 
-PS2="└─▪ "
+PS2="╰─▪ "
 
 _omb_util_add_prompt_command _omb_theme_PROMPT_COMMAND
