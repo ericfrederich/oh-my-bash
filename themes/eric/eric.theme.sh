@@ -13,6 +13,10 @@ SCM_GIT_CHAR="${_omb_prompt_bold_green}±${_omb_prompt_normal}"
 SCM_SVN_CHAR="${_omb_prompt_bold_teal}⑆${_omb_prompt_normal}"
 SCM_HG_CHAR="${_omb_prompt_bold_brown}☿${_omb_prompt_normal}"
 
+# these two copied from cupcake
+SCM_GIT_BEHIND_CHAR="${_omb_prompt_brown}↓${_omb_prompt_normal}"
+SCM_GIT_AHEAD_CHAR="${_omb_prompt_bold_green}↑${_omb_prompt_normal}"
+
 #Mysql Prompt
 export MYSQL_PS1="(\u@\h) [\d]> "
 
